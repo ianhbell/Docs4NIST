@@ -14,7 +14,7 @@ def main():
     if pre_borg_command != "":
         with gha_utils.group("Executing pre-borg-command", use_subprocess=True):
             gha_utils.debug(f"pre-borg-command: {pre_borg_command}", use_subprocess=True)
-            subprocess.run(pre_borg_command, shell=False, check=True)
+            subprocess.run(pre_borg_command, shell=True, check=True)
 
     with gha_utils.group("Borg the Docs", use_subprocess=True):
         original_docs = SphinxDocs(docs_dir=os.environ['INPUT_DOCS-FOLDER'])
@@ -29,7 +29,7 @@ def main():
     if pre_build_command != "":
         with gha_utils.group("Executing pre-build-command", use_subprocess=True):
             gha_utils.debug(f"pre-build-command: {pre_build_command}", use_subprocess=True)
-            subprocess.run(pre_build_command, shell=False, check=True)
+            subprocess.run(pre_build_command, shell=True, check=True)
 
     with gha_utils.group("Build HTML", use_subprocess=True):
         build_command = os.environ['INPUT_BUILD-HTML-COMMAND']
@@ -51,7 +51,7 @@ def main():
     if post_build_command != "":
         with gha_utils.group("Executing post-build-command", use_subprocess=True):
             gha_utils.debug(f"post-build-command: {post_build_command}", use_subprocess=True)
-            subprocess.run(post_build_command, shell=False, check=True)
+            subprocess.run(post_build_command, shell=True, check=True)
 
     if os.environ['NTD2D_PUSH_PAGES'] == "true":
         with gha_utils.group("Update Pages", use_subprocess=True):
