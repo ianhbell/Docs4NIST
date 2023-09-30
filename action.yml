@@ -186,9 +186,9 @@ runs:
       with:
         name: ${{ github.event.repository.name }}-${{ env.SANITIZED_REF_NAME }}-${{ github.sha }}
         path: |
-          ${{ steps.ntd2d.outputs.borged-build-folder }}/latex/${{ github.event.repository.name }}.pdf
-          ${{ steps.ntd2d.outputs.borged-build-folder }}/latex/${{ github.event.repository.name }}.log
-          ${{ steps.ntd2d.outputs.borged-build-folder }}/latex/${{ github.event.repository.name }}.tex
+          ${{ steps.ntd2d.outputs.borged-build-folder }}/latex/*.pdf
+          ${{ steps.ntd2d.outputs.borged-build-folder }}/latex/*.log
+          ${{ steps.ntd2d.outputs.borged-build-folder }}/latex/*.tex
       # Use always() to always run this step to publish documentation
       # artifacts even when there are failures
       if: ${{ contains(inputs.formats, 'pdf') && always() }}
